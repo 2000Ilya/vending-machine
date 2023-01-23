@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "VT323";
+  src: url("./resources/fonts/VT323-Regular.ttf");
+  font-weight: normal;
+}
+
+* {
+  font-family: "VT323";
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  &:hover,
+  &:disabled {
+    opacity: 0.7;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

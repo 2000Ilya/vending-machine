@@ -1,0 +1,23 @@
+.num-pad {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 12.8rem;
+
+  .num-pad__square-container {
+    display: grid;
+    grid-template-columns: repeat(3, 4rem);
+    grid-template-rows: repeat(3, 4rem);
+    grid-column-gap: 0.4rem;
+    grid-row-gap: 0.4rem;
+  }
+
+  .num-pad__bottom-group {
+    display: grid;
+    grid-template-columns: 0.7fr 0.3fr;
+    grid-template-rows: 4rem;
+    grid-column-gap: 0.4rem;
+    grid-row-gap: 0.4rem;
+    width: 100%;
+  }
+}

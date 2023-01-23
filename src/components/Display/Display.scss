@@ -1,0 +1,35 @@
+.display {
+  position: relative;
+  background-color: black;
+  background-image: radial-gradient(rgba(0, 150, 0, 0.75), black 120%);
+  height: 4rem;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0 2rem;
+  color: white;
+  font-size: 2.5rem;
+  text-shadow: 0 0 0.5rem #c8c8c8;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 0.4rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4rem;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(black, 0.15),
+      rgba(black, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  }
+}
