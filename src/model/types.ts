@@ -20,11 +20,11 @@ export type StoredCashType = {
 };
 
 export enum Status {
-  TOP_UP_BALANCE = "Пополните баланс",
-  CHANGE_GIVEN = "Возьмите сдачу",
-  ERROR_CODE = "Неверный код товара!",
+  TOP_UP_BALANCE = "Fill the balance",
+  CHANGE_GIVEN = "Get the change",
+  ERROR_CODE = "Incorrect product code!",
   EMPTY = "",
-  PRODUCT_ABSENT = "Продукт отсутствует",
+  PRODUCT_ABSENT = "Product is not available",
 }
 
 export type PrivateFields =
@@ -35,4 +35,5 @@ export type PrivateFields =
   | "_changeGiven"
   | "_inputCode"
   | "_isProductSelected"
-  | "_isProductSold";
+  | "_isProductSold"
+  | "_logs";

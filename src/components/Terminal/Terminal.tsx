@@ -1,26 +1,22 @@
-import React from 'react'
-import { observer } from 'mobx-react-lite'
-import Display from '../Display'
-import NumPad from '../NumPad'
-import { useLocalStore } from '../../utils/useLocalStore'
-import VendingMachineStore from '../../model/VendingMachineStore'
+import React from "react";
+import { observer } from "mobx-react-lite";
+import Display from "../Display";
+import NumPad from "../NumPad";
+import VendingMachineStore from "../../model/VendingMachineStore";
 
-import "./Terminal.scss"
+import "./Terminal.scss";
 
 type Props = {
-  handleGetChange: () => void,
-  handleProductSelect: () => void
-}
+  vendingMachine: VendingMachineStore;
+};
 
 const Terminal = observer((props: Props) => {
-  const vendingMachine = useLocalStore(() => new VendingMachineStore());
-
   return (
-    <div className='terminal'>
-      <Display inputCode={vendingMachine.inputCode} />
-      <NumPad {...props} changeInputCode={vendingMachine.changeInputCode} />
+    <div className="terminal">
+      <Display inputCode={props.vendingMachine.inputCode} />
+      <NumPad vendingMachine={props.vendingMachine} />
     </div>
-  )
-})
+  );
+});
 
-export default Terminal
+export default Terminal;

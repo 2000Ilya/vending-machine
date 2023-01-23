@@ -7,6 +7,7 @@ const BanknoteIcon = () => {
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 511.88 511.88"
+
     >
       <rect
         y="117.3"

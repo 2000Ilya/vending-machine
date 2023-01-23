@@ -16,6 +16,7 @@ export default class VendingMachineStore {
   private _inputCode: string = "";
   private _isProductSelected: boolean = false;
   private _isProductSold: boolean = false;
+  private _logs: string[] = [];
 
   constructor() {
     makeObservable<VendingMachineStore, PrivateFields>(this, {
@@ -27,6 +28,7 @@ export default class VendingMachineStore {
       _storedCash: observable,
       _changeGiven: observable,
       _inputCode: observable,
+      _logs: observable,
       balance: computed,
       products: computed,
       productsSold: computed,
@@ -35,11 +37,14 @@ export default class VendingMachineStore {
       inputCode: computed,
       isProductSelected: computed,
       isProductSold: computed,
+      logs: computed,
       giveChange: action,
       addBalance: action,
       changeInputCode: action,
       setIsProductSelected: action,
       setIsProductSold: action,
+      addLog: action,
+      handleGetChange: action,
     });
     this._products = generateExample.products;
     this._storedCash = generateExample.storedCash;
@@ -64,9 +69,13 @@ export default class VendingMachineStore {
     this.changeInputCode = this.changeInputCode.bind(this);
     this.setIsProductSelected = this.setIsProductSelected.bind(this);
     this.setIsProductSold = this.setIsProductSold.bind(this);
+    this.addLog = this.addLog.bind(this);
+    this.handleGetChange = this.handleGetChange.bind(this);
     this.destroy = this.destroy.bind(this);
+  }
 
-    console.log(generateExample.products, generateExample.storedCash, this);
+  get logs(): string[] {
+    return this._logs;
   }
 
   get isProductSelected(): boolean {
@@ -78,8 +87,6 @@ export default class VendingMachineStore {
   }
 
   get inputCode(): string {
-    console.log(this._inputCode);
-
     return this._inputCode;
   }
 
@@ -106,12 +113,16 @@ export default class VendingMachineStore {
   _getCashFromBank(denomination: StoredCashValuesType, quantity: number) {
     this._storedCash[denomination] -= quantity;
     this._changeGiven[denomination] += quantity;
+    this.addLog(`Given ${quantity} banknotes of ${denomination}`);
     return denomination * quantity;
   }
 
   _getProduct(id: string, quantity: number): number {
     this._products[id].quantity -= quantity;
     this._productsSold[id].quantity += quantity;
+    this.addLog(
+      `Given ${quantity} of ${this._products[id].name} costs ${this._products[id].price}`
+    );
     return this._products[id].price * quantity;
   }
 
@@ -202,6 +213,7 @@ export default class VendingMachineStore {
 
   addBalance(sum: number, productCode: string, callback: () => void) {
     this._balance += sum;
+    this.addLog(`Added ${sum} with result balance of ${this._balance}`);
     if (this._balance >= this.products[productCode].price) {
       this._balance -= this._buyProduct(productCode);
       callback();
@@ -209,7 +221,6 @@ export default class VendingMachineStore {
   }
 
   changeInputCode(codeSymbol: string): void {
-    console.log(this._inputCode, codeSymbol);
     if (codeSymbol.length === 0) {
       this._inputCode = "";
     } else if (this._inputCode.length < 2) {
@@ -223,6 +234,15 @@ export default class VendingMachineStore {
 
   setIsProductSold(isProductSold: boolean): void {
     this._isProductSold = isProductSold;
+  }
+
+  addLog(newLog: string): void {
+    this._logs.push(newLog);
+  }
+
+  handleGetChange(): void {
+    this.giveChange();
+    this.setIsProductSold(false);
   }
 
   destroy(): void {

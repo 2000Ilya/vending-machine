@@ -1,0 +1,36 @@
+.bank {
+  display: grid;
+  grid-template-columns: repeat(3, 12.8rem);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  grid-template-areas:
+    "bank-title bank-title bank-title"
+    ". . ."
+    ". . .";
+
+  .bank-title {
+    height: 2rem;
+    text-align: center;
+    grid-area: bank-title;
+    color: #fff;
+    background-color: #000;
+    font-size: 2rem;
+  }
+
+  .cash-handler__btn {
+    width: 12.8rem;
+    height: 7rem;
+  }
+
+  .banknote-quantity {
+    background: #000;
+    color: #fff;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bank-item {
+  }
+}

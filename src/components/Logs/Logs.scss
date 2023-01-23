@@ -1,0 +1,20 @@
+.logs {
+  height: 30.4rem;
+  width: 12.8rem;
+  box-sizing: border-box;
+  border: 2px solid #000;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  overflow: scroll;
+
+  .log {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    background: rgb(166, 164, 164);
+    color: #000;
+    margin-bottom: 0.4rem;
+    font-size: 1.2rem;
+  }
+}

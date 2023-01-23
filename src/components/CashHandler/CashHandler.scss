@@ -4,21 +4,21 @@
   grid-template-rows: repeat(4, 7.8rem);
   grid-column-gap: 0;
   grid-row-gap: 0;
+}
 
-  .cash-handler__btn {
+.cash-handler__btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  svg {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-
-    svg {
-      position: relative;
-    }
-    span {
-      position: absolute;
-      font-size: 5rem;
-      color: yellow;
-    }
+  }
+  span {
+    position: absolute;
+    font-size: 5rem;
+    color: yellow;
   }
 }
